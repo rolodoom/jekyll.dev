@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  jekyll:
+    image: jekyll/jekyll:latest
+    container_name: jekyll-app
+    command: jekyll serve --watch --force_polling --verbose
+    ports:
+      - 4000:4000
+    volumes:
+      - "$PWD/src/:/srv/jekyll"
+      - "$PWD/vendor/bundle:/usr/local/bundle"
+    networks:
+      - jekyllnet
+
+networks:
+  jekyllnet:
+    name: jekyll_network
